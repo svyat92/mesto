@@ -4,4 +4,12 @@
   margin: 0 auto;
   padding: 45px 0 60px;
   background-color: #000000;
+  box-sizing: border-box;
+  font-family: 'Inter', Arial, sans-serif;
+  color: #FFFFFF;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

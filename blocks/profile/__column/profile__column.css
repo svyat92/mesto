@@ -1,0 +1,4 @@
+.profile__column {
+  display: flex;
+  gap: 30px;
+}
