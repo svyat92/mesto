@@ -3,4 +3,13 @@
   height: 33px;
   margin-bottom: 41px;
   background-image: url(../../../images/logo.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 896px) {
+  .header__logo {
+    margin-left: 27px;
+  }
 }
