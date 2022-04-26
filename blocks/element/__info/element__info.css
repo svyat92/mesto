@@ -1,6 +1,5 @@
 .element__info {
-  padding-left: 20px;
-  padding-right: 15px;
+  padding: 25px 15px 25px 21px;
   border-radius: 0px 0px 10px 10px;
   background: #FFFFFF;
   display: flex;
