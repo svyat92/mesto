@@ -1,4 +1,4 @@
-function qs(selector) {
+function querySelector(selector) {
   return document.querySelector(selector);
 }
 
@@ -11,15 +11,15 @@ function closeCurrentPopup(event) {
   currentPopup.classList.remove('popup_active');
 }
 
-const popup = qs('.popup');
-const profileTitle = qs('.profile__title');
-const profileSubTitle = qs('.profile__subtitle');
-const inputTitle = qs('.popup__input_content_title');
-const inputSubTitle = qs('.popup__input_content_subtitle');
+const popup = querySelector('.popup');
+const profileTitle = querySelector('.profile__title');
+const profileSubTitle = querySelector('.profile__subtitle');
+const inputTitle = querySelector('.popup__input_content_title');
+const inputSubTitle = querySelector('.popup__input_content_subtitle');
 
-const editButton = qs('.profile__edit-btn');
-const submitButton = qs('.popup__submit-btn');
-const closeButton = qs('.popup__close-btn');
+const editButton = querySelector('.profile__edit-btn');
+const submitButton = querySelector('.popup__submit-btn');
+const closeButton = querySelector('.popup__close-btn');
 
 editButton.addEventListener('click', function (event) {
   inputTitle.value = profileTitle.textContent;
