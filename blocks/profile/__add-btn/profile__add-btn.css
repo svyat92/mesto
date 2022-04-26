@@ -16,6 +16,6 @@
 @media screen and (max-width:700px) {
   .profile__add-btn {
     justify-self: center;
-    width: calc(100% - 19px * 2);
+    width: 100%;
   }
 }
