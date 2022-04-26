@@ -28,6 +28,7 @@ editButton.addEventListener('click', function (event) {
 });
 
 submitButton.addEventListener('click', function (event) {
+  event.preventDefault();
   profileTitle.textContent = inputTitle.value;
   profileSubTitle.textContent = inputSubTitle.value;
   closeCurrentPopup(event)
