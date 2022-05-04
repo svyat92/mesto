@@ -35,5 +35,8 @@ initialCards.forEach((card) => {
   cardElement.querySelector('.element__delete-btn').addEventListener('click', event => {
     event.target.closest('.element').remove();
   });
+  cardElement.querySelector('.element__like-btn').addEventListener('click', event => {
+    event.target.classList.toggle('element__like-btn_active');
+  });
   cardSection.append(cardElement);
 });
