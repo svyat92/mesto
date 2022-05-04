@@ -1,7 +1,7 @@
 .element__like-btn {
   padding: 0;
-  min-width: 22px;
-  min-height: 19px;
+  width: 22px;
+  height: 19px;
   border: none;
   background-color: #FFFFFF;
   background-image: url(../../../images/like.svg);

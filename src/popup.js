@@ -14,8 +14,8 @@ const inputTitle = document.querySelector('.popup__input_content_title');
 const inputSubTitle = document.querySelector('.popup__input_content_subtitle');
 
 const editButton = document.querySelector('.profile__edit-btn');
-const submitButton =  document.querySelector('.popup__submit-btn');
-const closeButton =document.querySelector('.popup__close-btn');
+const submitButton = document.querySelector('.popup__submit-btn');
+const closeButton = document.querySelector('.popup__close-btn');
 
 editButton.addEventListener('click', function (event) {
   inputTitle.value = profileTitle.textContent;

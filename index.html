@@ -11,9 +11,11 @@
 </head>
 
 <body class="page">
+
   <header class="header">
     <a href="#" class="header__logo"></a>
   </header>
+
   <main class="page__content">
 
     <section class="profile">
@@ -32,31 +34,36 @@
 
     <div class="popup">
       <form action="#" class="popup__form">
-        <h2 class="popup__title">
-          Редактировать профиль
-        </h2>
+        <h2 class="popup__title">Редактировать профиль</h2>
         <input type="text" class="popup__input popup__input_content_title" placeholder="Имя">
         <input type="text" class="popup__input popup__input_content_subtitle" placeholder="О себе">
         <input type="submit" class="popup__submit-btn link" value="Сохранить">
         <button type="button" class="popup__close-btn link"></button>
       </form>
     </div>
+
   </main>
 
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022. Святослав Тверитинов</p>
   </footer>
+
   <template id="place-card">
     <article class="elements__item element">
-      <img class="element__image">
+      <div class="element__image-wrapper">
+        <img class="element__image">
+        <button type="button" class="element__delete-btn link"></button>
+      </div>
       <div class="element__info">
         <h2 class="element__title"></h2>
         <button type="button" class="element__like-btn link"></button>
       </div>
     </article>
   </template>
+
   <script src="./src/index.js"></script>
   <script src="./src/popup.js"></script>
+
 </body>
 
 </html>

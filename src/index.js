@@ -32,5 +32,8 @@ initialCards.forEach((card) => {
   cardElement.querySelector('.element__image').src = card.link;
   cardElement.querySelector('.element__image').alt = card.name;
   cardElement.querySelector('.element__title').textContent = card.name;
+  cardElement.querySelector('.element__delete-btn').addEventListener('click', event => {
+    event.target.closest('.element').remove();
+  });
   cardSection.append(cardElement);
 });
