@@ -77,8 +77,6 @@ formAddCard.addEventListener('submit', event => {
   closePopup(popupAddCard);
 });
 
-
-
 // Добавляем всем кнопкам закрытия всплывающих окнон одинаковый слушатель
 const buttonsClosePopup = document.querySelectorAll('.popup__close-btn');
 buttonsClosePopup.forEach(button => {
