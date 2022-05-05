@@ -1,15 +1,25 @@
+const imagePopup = document.querySelector('.popup-image');
+
 function addCard(card, prepend = false) {
   const cardSection = document.querySelector('.elements');
   const cardTemplate = document.querySelector('#place-card').content;
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-  cardElement.querySelector('.element__image').src = card.link;
-  cardElement.querySelector('.element__image').alt = card.name;
+  const elementImage = cardElement.querySelector('.element__image')
+  elementImage.src = card.link;
+  elementImage.alt = card.name;
   cardElement.querySelector('.element__title').textContent = card.name;
   cardElement.querySelector('.element__delete-btn').addEventListener('click', event => {
     event.target.closest('.element').remove();
   });
   cardElement.querySelector('.element__like-btn').addEventListener('click', event => {
     event.target.classList.toggle('element__like-btn_active');
+  });
+  elementImage.addEventListener('click', event => {
+    const image = imagePopup.querySelector('.popup-image__image');
+    image.src = card.link;
+    image.alt = card.name;
+    imagePopup.querySelector('.popup-image__desc').textContent = card.name;
+    openPopup(imagePopup);
   });
   if (prepend === true) {
     cardSection.prepend(cardElement);
@@ -85,6 +95,25 @@ function initEditPopup() {
 function initAddPopup() {
   const popup = document.querySelector('.popup-add');
   const popupForm = popup.querySelector('.popup__form');
+  const addButton = document.querySelector('.profile__add-btn');
+  const inputName = popup.querySelector('.popup__input_content_name');
+  const inputUrl = popup.querySelector('.popup__input_content_url');
+
+  addButton.addEventListener('click', event => {
+    inputName.value = null;
+    inputUrl.value = null;
+    openPopup(popup);
+  });
+
+  popupForm.addEventListener('submit', event => {
+    event.preventDefault();
+    addCard({ name: inputName.value, link: inputUrl.value }, true);
+    closeCurrentPopup(event);
+  });
+}
+
+function initImagePopup() {
+  
   const addButton = document.querySelector('.profile__add-btn');
   const inputName = popup.querySelector('.popup__input_content_name');
   const inputUrl = popup.querySelector('.popup__input_content_url');
