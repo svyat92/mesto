@@ -13,11 +13,11 @@ function addCard(card, prepend = false) {
     event.target.classList.toggle('element__like-btn_active');
   });
   elementImage.addEventListener('click', event => {
-    const popup = document.querySelector('.popup-image');
-    const image = popup.querySelector('.popup-image__image');
+    const popup = document.querySelector('.popup_type_image');
+    const image = popup.querySelector('.popup__image');
     image.src = card.link;
     image.alt = card.name;
-    popup.querySelector('.popup-image__desc').textContent = card.name;
+    popup.querySelector('.popup__desc').textContent = card.name;
     openPopup(popup);
   });
   if (prepend === true) {
@@ -68,7 +68,7 @@ function initCards() {
 }
 
 function initEditPopup() {
-  const popup = document.querySelector('.popup-edit');
+  const popup = document.querySelector('.popup_type_edit-profile');
   const popupForm = popup.querySelector('.popup__form');
   const profileTitle = document.querySelector('.profile__title');
   const profileSubTitle = document.querySelector('.profile__subtitle');
@@ -91,7 +91,7 @@ function initEditPopup() {
 }
 
 function initAddPopup() {
-  const popup = document.querySelector('.popup-add');
+  const popup = document.querySelector('.popup_type_add-card');
   const popupForm = popup.querySelector('.popup__form');
   const addButton = document.querySelector('.profile__add-btn');
   const inputName = popup.querySelector('.popup__input_content_name');
