@@ -32,12 +32,23 @@
 
     <section class="elements" aria-label="Интересные места"></section>
 
-    <div class="popup">
+    <div class="popup popup-edit">
       <form action="#" class="popup__form">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" class="popup__input popup__input_content_title" placeholder="Имя">
-        <input type="text" class="popup__input popup__input_content_subtitle" placeholder="О себе">
+        <input type="text" class="popup__input popup__input_content_title" placeholder="Имя" required>
+        <input type="text" class="popup__input popup__input_content_subtitle" placeholder="О себе" required>
         <input type="submit" class="popup__submit-btn link" value="Сохранить">
+        <button type="button" class="popup__close-btn link"></button>
+      </form>
+    </div>
+
+    <div class="popup popup-add">
+      <form action="#" class="popup__form">
+        <h2 class="popup__title">Новое место</h2>
+        <input type="text" class="popup__input popup__input_content_name" name="name" placeholder="Название" required>
+        <input type="text" class="popup__input popup__input_content_url" name="url" placeholder="Ссылка на картинку"
+          required>
+        <input type="submit" class="popup__submit-btn link" value="Создать">
         <button type="button" class="popup__close-btn link"></button>
       </form>
     </div>
@@ -62,8 +73,6 @@
   </template>
 
   <script src="./src/index.js"></script>
-  <script src="./src/popup.js"></script>
-
 </body>
 
 </html>
