@@ -70,8 +70,7 @@ const inputName = formAddCard.querySelector('.popup__input_content_name');
 const inputUrl = formAddCard.querySelector('.popup__input_content_url');
 
 buttonAddCard.addEventListener('click', event => {
-  inputName.value = null;
-  inputUrl.value = null;
+  formAddCard.reset();
   openPopup(popupAddCard);
 });
 
