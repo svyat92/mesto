@@ -8,7 +8,7 @@ const imageInPopup = popupImage.querySelector('.popup__image');
 const description = popupImage.querySelector('.popup__desc');
 
 // Возвращает DOM объект с новой карточкой
-function createCard(card) {
+const createCard = card => {
   const newCard = cardTemplate.querySelector('.element').cloneNode(true);
   const imageInCard = newCard.querySelector('.element__image');
   imageInCard.src = card.link;
@@ -29,8 +29,12 @@ function createCard(card) {
   return newCard;
 }
 
+const renderCard = card => {
+  cardSection.prepend(createCard(card));
+}
+
 // Добавляем все карточки из начального массива на страницу
-initialCards.forEach(card => cardSection.prepend(createCard(card)));
+initialCards.forEach(renderCard);
 
 /**
  * Редактирование профиля
@@ -73,7 +77,7 @@ buttonAddCard.addEventListener('click', event => {
 
 formAddCard.addEventListener('submit', event => {
   event.preventDefault();
-  cardSection.prepend(createCard({ name: inputName.value, link: inputUrl.value }));
+  renderCard({ name: inputName.value, link: inputUrl.value });
   closePopup(popupAddCard);
 });
 
