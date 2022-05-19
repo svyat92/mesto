@@ -1,4 +1,25 @@
-const openPopup = popupObj => popupObj.classList.add('popup_active');
+const handleEscapePopup = (event) => {
+  console.log('handleEscapePopup');
+  if (event.key === "Escape") {
+    const popupObj = document.querySelector('.popup_active');
+    closePopup(popupObj);
+    document.removeEventListener('keydown', handleEscapePopup);
+  }
+}
+
+const setPopupEventListeners = popupObj => {
+  popupObj.addEventListener('click', event => {
+    if (event.target === event.currentTarget || event.target.classList.contains('popup__close-btn')) {
+      closePopup(popupObj);
+    }
+  });
+  document.addEventListener('keydown', handleEscapePopup);
+};
+
+const openPopup = popupObj => {
+  popupObj.classList.add('popup_active');
+  setPopupEventListeners(popupObj);
+}
 const closePopup = popupObj => popupObj.classList.remove('popup_active');
 
 const cardSection = document.querySelector('.elements');
@@ -35,7 +56,7 @@ const renderCard = (card, append = 0) => {
   } else {
     cardSection.prepend(createCard(card));
   }
-  
+
 }
 
 // Добавляем все карточки из начального массива на страницу
@@ -86,9 +107,9 @@ formAddCard.addEventListener('submit', event => {
 });
 
 // Добавляем всем кнопкам закрытия всплывающих окнон одинаковый слушатель
-const buttonsClosePopup = document.querySelectorAll('.popup__close-btn');
-buttonsClosePopup.forEach(button => {
-  button.addEventListener('click', event => {
-    closePopup(event.target.closest('.popup'));
-  });
-});
+// const buttonsClosePopup = document.querySelectorAll('.popup__close-btn');
+// buttonsClosePopup.forEach(button => {
+//   button.addEventListener('click', event => {
+//     closePopup(event.target.closest('.popup'));
+//   });
+// });
