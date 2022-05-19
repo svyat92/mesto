@@ -29,12 +29,17 @@ const createCard = card => {
   return newCard;
 }
 
-const renderCard = card => {
-  cardSection.prepend(createCard(card));
+const renderCard = (card, append = 0) => {
+  if (append === 1) {
+    cardSection.append(createCard(card));
+  } else {
+    cardSection.prepend(createCard(card));
+  }
+  
 }
 
 // Добавляем все карточки из начального массива на страницу
-initialCards.forEach(renderCard);
+initialCards.forEach(card => renderCard(card, 1));
 
 /**
  * Редактирование профиля
