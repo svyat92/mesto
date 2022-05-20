@@ -33,22 +33,37 @@
     <section class="elements" aria-label="Интересные места"></section>
 
     <div class="popup popup_type_edit-profile">
-      <form action="#" class="popup__form">
+      <form name="edit-profile" action="#" class="form" novalidate>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" class="popup__input popup__input_content_title" placeholder="Имя" required>
-        <input type="text" class="popup__input popup__input_content_subtitle" placeholder="О себе" required>
-        <input type="submit" class="popup__submit-btn link" value="Сохранить">
+        <label class="form__field">
+          <input id="profie-name-input" type="text" class="form__input popup__input_content_title" placeholder="Имя"
+            required minlength="2" maxlength="40" autocomplete="off">
+          <span class="form__input-error profie-name-input-error"></span>
+        </label>
+        <label class="form__field">
+          <input id="profile-about-input" type="text" class="form__input popup__input_content_subtitle"
+            placeholder="О себе" required minlength="2" maxlength="200" autocomplete="off">
+          <span class="form__input-error profile-about-input-error"></span>
+        </label>
+        <button type="submit" class="form__submit-btn link" disabled>Сохранить</button>
         <button type="button" class="popup__close-btn link"></button>
       </form>
     </div>
 
     <div class="popup popup_type_add-card">
-      <form action="#" class="popup__form">
+      <form name="add_card" action="#" class="form" novalidate>
         <h2 class="popup__title">Новое место</h2>
-        <input type="text" class="popup__input popup__input_content_name" name="name" placeholder="Название" required>
-        <input type="text" class="popup__input popup__input_content_url" name="url" placeholder="Ссылка на картинку"
-          required>
-        <input type="submit" class="popup__submit-btn link" value="Создать">
+        <label class="form__field">
+          <input id="card-name-input" type="text" class="form__input form__input_content_name" name="name"
+            placeholder="Название" required minlength="2" maxlength="30" autocomplete="off">
+          <span class="form__input-error card-name-input-error"></span>
+        </label>
+        <label class="form__field">
+          <input id="card-url-input" type="url" class="form__input form__input_content_url" name="url"
+            placeholder="Ссылка на картинку" required autocomplete="off">
+          <span class="form__input-error card-url-input-error"></span>
+        </label>
+        <button type="submit" class="form__submit-btn link" disabled>Создать</button>
         <button type="button" class="popup__close-btn link"></button>
       </form>
     </div>
@@ -82,6 +97,7 @@
 
   <script src="./src/dataCards.js"></script>
   <script src="./src/index.js"></script>
+  <script src="./src/validate.js"></script>
 </body>
 
 </html>

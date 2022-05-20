@@ -1,5 +1,4 @@
 const handleEscapePopup = (event) => {
-  console.log('handleEscapePopup');
   if (event.key === "Escape") {
     const popupObj = document.querySelector('.popup_active');
     closePopup(popupObj);
@@ -8,7 +7,7 @@ const handleEscapePopup = (event) => {
 }
 
 const setPopupEventListeners = popupObj => {
-  popupObj.addEventListener('click', event => {
+  popupObj.addEventListener('mousedown', event => {
     if (event.target === event.currentTarget || event.target.classList.contains('popup__close-btn')) {
       closePopup(popupObj);
     }
@@ -50,17 +49,26 @@ const createCard = card => {
   return newCard;
 }
 
-const renderCard = (card, append = 0) => {
-  if (append === 1) {
-    cardSection.append(createCard(card));
-  } else {
-    cardSection.prepend(createCard(card));
-  }
-
+const renderCard = (card) => {
+  cardSection.prepend(createCard(card));
 }
 
 // Добавляем все карточки из начального массива на страницу
-initialCards.forEach(card => renderCard(card, 1));
+initialCards.reverse().forEach(card => renderCard(card));
+
+
+const renderForm = (formObj) => {
+  const inputList = Array.from(formObj.querySelectorAll('.form__input'));
+  const buttonObj = formObj.querySelector('.form__submit-btn');
+  toggleButtonState(inputList, buttonObj);
+  inputList.forEach((inputObj) => {
+    hideInputError(formObj, inputObj);
+  });
+}
+
+const setDefaultFocus = (formObj) => {
+  formObj.elements[0].focus();
+}
 
 /**
  * Редактирование профиля
@@ -69,18 +77,20 @@ const profileTitle = document.querySelector('.profile__title');
 const profileSubTitle = document.querySelector('.profile__subtitle');
 const buttonEditProfile = document.querySelector('.profile__edit-btn');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
-const formEditProfile = popupEditProfile.querySelector('.popup__form');
+const formEditProfile = popupEditProfile.querySelector('.form');
 const inputTitle = formEditProfile.querySelector('.popup__input_content_title');
 const inputSubTitle = formEditProfile.querySelector('.popup__input_content_subtitle');
 
-buttonEditProfile.addEventListener('click', event => {
+buttonEditProfile.addEventListener('click', () => {
+  formEditProfile.reset();
   inputTitle.value = profileTitle.textContent;
   inputSubTitle.value = profileSubTitle.textContent;
+  renderForm(formEditProfile);
   openPopup(popupEditProfile);
+  setDefaultFocus(formEditProfile);
 });
 
-popupEditProfile.addEventListener('submit', event => {
-  event.preventDefault();
+popupEditProfile.addEventListener('submit', () => {
   profileTitle.textContent = inputTitle.value;
   profileSubTitle.textContent = inputSubTitle.value;
   closePopup(popupEditProfile);
@@ -91,25 +101,18 @@ popupEditProfile.addEventListener('submit', event => {
  */
 const buttonAddCard = document.querySelector('.profile__add-btn');
 const popupAddCard = document.querySelector('.popup_type_add-card');
-const formAddCard = popupAddCard.querySelector('.popup__form');
-const inputName = formAddCard.querySelector('.popup__input_content_name');
-const inputUrl = formAddCard.querySelector('.popup__input_content_url');
+const formAddCard = popupAddCard.querySelector('.form');
+const inputName = formAddCard.querySelector('.form__input_content_name');
+const inputUrl = formAddCard.querySelector('.form__input_content_url');
 
-buttonAddCard.addEventListener('click', event => {
+buttonAddCard.addEventListener('click', () => {
   formAddCard.reset();
+  renderForm(formAddCard);
   openPopup(popupAddCard);
+  setDefaultFocus(formAddCard);
 });
 
-formAddCard.addEventListener('submit', event => {
-  event.preventDefault();
+formAddCard.addEventListener('submit', () => {
   renderCard({ name: inputName.value, link: inputUrl.value });
   closePopup(popupAddCard);
 });
-
-// Добавляем всем кнопкам закрытия всплывающих окнон одинаковый слушатель
-// const buttonsClosePopup = document.querySelectorAll('.popup__close-btn');
-// buttonsClosePopup.forEach(button => {
-//   button.addEventListener('click', event => {
-//     closePopup(event.target.closest('.popup'));
-//   });
-// });
