@@ -53,10 +53,6 @@ const renderCard = (card) => {
   cardSection.prepend(createCard(card));
 }
 
-// Добавляем все карточки из начального массива на страницу
-initialCards.reverse().forEach(card => renderCard(card));
-
-
 const renderForm = (formObj) => {
   const inputList = Array.from(formObj.querySelectorAll('.form__input'));
   const buttonObj = formObj.querySelector('.form__submit-btn');
@@ -70,9 +66,6 @@ const setDefaultFocus = (formObj) => {
   formObj.elements[0].focus();
 }
 
-/**
- * Редактирование профиля
- */
 const profileTitle = document.querySelector('.profile__title');
 const profileSubTitle = document.querySelector('.profile__subtitle');
 const buttonEditProfile = document.querySelector('.profile__edit-btn');
@@ -96,23 +89,23 @@ popupEditProfile.addEventListener('submit', () => {
   closePopup(popupEditProfile);
 });
 
-/**
- * Добавление новой карточки
- */
-const buttonAddCard = document.querySelector('.profile__add-btn');
-const popupAddCard = document.querySelector('.popup_type_add-card');
-const formAddCard = popupAddCard.querySelector('.form');
-const inputName = formAddCard.querySelector('.form__input_content_name');
-const inputUrl = formAddCard.querySelector('.form__input_content_url');
+ const buttonAddCard = document.querySelector('.profile__add-btn');
+ const popupAddCard = document.querySelector('.popup_type_add-card');
+ const formAddCard = popupAddCard.querySelector('.form');
+ const inputName = formAddCard.querySelector('.form__input_content_name');
+ const inputUrl = formAddCard.querySelector('.form__input_content_url');
+ 
+ buttonAddCard.addEventListener('click', () => {
+   formAddCard.reset();
+   renderForm(formAddCard);
+   openPopup(popupAddCard);
+   setDefaultFocus(formAddCard);
+ });
 
-buttonAddCard.addEventListener('click', () => {
-  formAddCard.reset();
-  renderForm(formAddCard);
-  openPopup(popupAddCard);
-  setDefaultFocus(formAddCard);
-});
+ formAddCard.addEventListener('submit', () => {
+   renderCard({ name: inputName.value, link: inputUrl.value });
+   closePopup(popupAddCard);
+ });
 
-formAddCard.addEventListener('submit', () => {
-  renderCard({ name: inputName.value, link: inputUrl.value });
-  closePopup(popupAddCard);
-});
+// Добавляем все карточки из начального массива на страницу
+initialCards.reverse().forEach(card => renderCard(card));
