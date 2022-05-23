@@ -71,8 +71,8 @@ const profileSubTitle = document.querySelector('.profile__subtitle');
 const buttonEditProfile = document.querySelector('.profile__edit-btn');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const formEditProfile = popupEditProfile.querySelector('.form');
-const inputTitle = formEditProfile.querySelector('.popup__input_content_title');
-const inputSubTitle = formEditProfile.querySelector('.popup__input_content_subtitle');
+const inputTitle = formEditProfile.querySelector('.form__input_content_title');
+const inputSubTitle = formEditProfile.querySelector('.form__input_content_subtitle');
 
 buttonEditProfile.addEventListener('click', () => {
   formEditProfile.reset();
