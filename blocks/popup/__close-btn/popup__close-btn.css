@@ -10,10 +10,13 @@
   background-image: url(../../../images/close.svg);
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
 }
 
 @media screen and (max-width: 544px) {
   .popup__close-btn {
+    min-width: 20px;
+    min-height: 20px;
     right: 0;
   }
 }

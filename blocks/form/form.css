@@ -1,18 +1,5 @@
 .form {
-  width: 430px;
   display: flex;
   flex-direction: column;
   background-color: #FFFFFF;
-}
-
-@media screen and (max-width: 896px) {
-  .form {
-    width: calc(100% - 52px * 2);
-  }
-}
-
-@media screen and (max-width: 544px) {
-  .form {
-    width: calc(100% - 19px * 2);
-  }
 }
