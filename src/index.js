@@ -7,7 +7,7 @@ const handleEscapePopup = (event) => {
 
 const handleMousedowPopup = (event) => {
   if (event.target === event.currentTarget || event.target.classList.contains('popup__close-btn')) {
-    const popupObj = document.querySelector('.popup_active');
+    const popupObj = event.currentTarget;
     closePopup(popupObj);
   }
 } 
