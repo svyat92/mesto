@@ -11,6 +11,7 @@
 
 @media screen and (max-width: 544px) {
   .popup__form-container {
+    padding: 25px 22px;
     width: calc(100% - 19px * 2);
   }
 }
