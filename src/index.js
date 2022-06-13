@@ -53,16 +53,6 @@ const renderCard = (card) => {
   cardSection.prepend(newCard.generateCard());
 }
 
-const renderForm = (formObj) => {
-  // const inputList = Array.from(formObj.querySelectorAll('.form__input'));
-  // const buttonObj = formObj.querySelector('.form__submit-btn');
-  // toggleButtonState(inputList, buttonObj, validationSettings);
-  // inputList.forEach((inputObj) => {
-  //   hideInputError(formObj, inputObj, validationSettings);
-  // });
-}
-
-
 const validationSettings = {
   formSelector: '.form',
   inputSelector: '.form__input',
@@ -88,7 +78,6 @@ buttonEditProfile.addEventListener('click', () => {
   inputTitle.value = profileTitle.textContent;
   inputSubTitle.value = profileSubTitle.textContent;
   validatorEditProfile.resetError();
-  renderForm(formEditProfile);
   openPopup(popupEditProfile);
 });
 
