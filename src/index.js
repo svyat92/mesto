@@ -1,6 +1,6 @@
-import { Card } from './card.js';
+import { Card } from './Card.js';
 import { initialCards } from './dataCards.js';
-import { FormValidator } from './validate.js';
+import { FormValidator } from './FormValidator.js';
 
 const handleEscapePopup = (event) => {
   if (event.key === "Escape") {
