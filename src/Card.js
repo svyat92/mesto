@@ -5,6 +5,7 @@ export class Card {
   #handleOpenPopup;
   #element;
   #elementImage;
+  #elementLikeBtn;
 
   constructor(card, cardSelector, handleOpenPopup) {
     this.name = card.name;
@@ -23,23 +24,24 @@ export class Card {
     return cardElement;
   }
 
-  #handleDeleteCard(event) {
-    event.target.closest('.element').remove();
+  #handleDeleteCard() {
+    this.#element.remove();
   }
 
-  #handleLikeCard(event) {
-    event.target.classList.toggle('element__like-btn_active');
+  #handleLikeCard() {
+    this.#elementLikeBtn.classList.toggle('element__like-btn_active');
   }
 
   #setEventListeners() {
-    this.#element.querySelector('.element__delete-btn').addEventListener('click', this.#handleDeleteCard);
-    this.#element.querySelector('.element__like-btn').addEventListener('click', this.#handleLikeCard);
+    this.#element.querySelector('.element__delete-btn').addEventListener('click', () => this.#handleDeleteCard());
+    this.#elementLikeBtn.addEventListener('click', () => this.#handleLikeCard());
     this.#elementImage.addEventListener('click', () => this.#handleOpenPopup(this));
   }
 
   generateCard() {
     this.#element = this.#getTemplate();
     this.#elementImage = this.#element.querySelector('.element__image');
+    this.#elementLikeBtn = this.#element.querySelector('.element__like-btn');
     this.#setEventListeners();
 
     this.#elementImage.src = this.link;
