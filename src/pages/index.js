@@ -6,6 +6,7 @@ import { Section } from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js';
+import { Api } from '../components/Api';
 import {
   validationSettings,
   cardSelector,
@@ -29,6 +30,20 @@ const renderCard = (data) => {
   cardList.addItem(cardElement);
 }
 
+const api = new Api({
+  serverUrl: 'https://mesto.nomoreparties.co/cohort-42',
+  token: 'c56e30dc-2883-4270-a59e-b2f7bae969c6'
+});
+
+api.getInitialCards()
+  .then((result) => {
+    initialCards = result;
+  })
+  .catch((err) => {
+    // Пока просто вывожу ошибку в консоль
+    console.log(err);
+  }); 
+
 // Валидация для формы добавления карточки
 const validatorEditProfile = new FormValidator(
   validationSettings,
@@ -48,6 +63,18 @@ const userInfo = new UserInfo({
   userNameSelector,
   userDescSelector
 });
+
+api.getUserInfo()
+  .then((result) => {
+    userInfo.setUserInfo({
+      userName: result.name,
+      userDesc: result.about
+    });
+  })
+  .catch((err) => {
+    // Пока просто вывожу ошибку в консоль
+    console.log(err);
+  }); 
 
 // Всплывающее окно с картинкой
 const popupImage = new PopupWithImage(popupImageSelector);
