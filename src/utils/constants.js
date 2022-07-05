@@ -26,6 +26,9 @@ export const popupAddCardSelector = '.popup_type_add-card';
 // Селектор всплывающего окна с формой редактирования профиля
 export const popupEditProfileSelector = '.popup_type_edit-profile';
 
+// Селектор всплывающего окна с подверждением удаления карточки
+export const popupConfirmationSelector = '.popup_type_confirm'
+
 // Селектор кнопки "Реадктировать профиль"
 export const btnEditSelector = '.profile__edit-btn';
 

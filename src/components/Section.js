@@ -17,6 +17,9 @@ export class Section {
     this._container.innerHTML = '';
   }
 
+  setItems(items) {
+    this._renderedItems = items;
+  }
   renderItems() {
     this.clear();
 

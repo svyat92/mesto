@@ -1,10 +1,10 @@
 import './index.css';
 import { Card } from '../components/Card.js';
-import { initialCards } from '../components/dataCards.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithConfirmation } from '../components/PopupWithConfirmation';
 import { UserInfo } from '../components/UserInfo.js';
 import { Api } from '../components/Api';
 import {
@@ -15,34 +15,37 @@ import {
   popupImageSelector,
   popupAddCardSelector,
   popupEditProfileSelector,
+  popupConfirmationSelector,
   btnEditSelector,
   btnAddCardSelector,
   containerCardSelector
 } from '../utils/constants.js';
 
+
 // Функция добавления карточки в DOM
 const renderCard = (data) => {
-  const card = new Card({ 
-    data: data, 
-    handleCardClick: (card) => popupImage.open(card)
+  const card = new Card({
+    data: data,
+    handleCardClick: (card) => popupImage.open(card),
+    handleDeleteClick: (card) => {
+      // Всплывающее окно с подверждением удаления карточки
+      const popupConfirmation = new PopupWithConfirmation({
+        handleSubmit: () => {
+          card.deleteCard();
+        }
+      }, popupConfirmationSelector);
+      popupConfirmation.setEventListeners();
+      popupConfirmation.open()
+    }
   }, cardSelector);
   const cardElement = card.generateCard();
   cardList.addItem(cardElement);
 }
 
 const api = new Api({
-  serverUrl: 'https://mesto.nomoreparties.co/cohort-42',
-  token: 'c56e30dc-2883-4270-a59e-b2f7bae969c6'
+  serverUrl: 'https://mesto.nomoreparties.co/cohort-45',
+  token: 'a1ff6e8d-0d81-4401-8c84-537e1b1bfaf5'
 });
-
-api.getInitialCards()
-  .then((result) => {
-    initialCards = result;
-  })
-  .catch((err) => {
-    // Пока просто вывожу ошибку в консоль
-    console.log(err);
-  }); 
 
 // Валидация для формы добавления карточки
 const validatorEditProfile = new FormValidator(
@@ -61,7 +64,8 @@ validatorAddCard.enableValidation();
 // Данные пользователя
 const userInfo = new UserInfo({
   userNameSelector,
-  userDescSelector
+  userDescSelector,
+  userAvatarSelector: '.profile__avatar'
 });
 
 api.getUserInfo()
@@ -70,11 +74,12 @@ api.getUserInfo()
       userName: result.name,
       userDesc: result.about
     });
+    userInfo.setUserAvatar(result.avatar);
   })
   .catch((err) => {
     // Пока просто вывожу ошибку в консоль
     console.log(err);
-  }); 
+  });
 
 // Всплывающее окно с картинкой
 const popupImage = new PopupWithImage(popupImageSelector);
@@ -94,10 +99,10 @@ popupEditProfile.setEventListeners();
 
 // Секция с карточками
 const cardList = new Section({
-  items: initialCards.reverse(),
+  items: [],
   renderer: renderCard
 }, containerCardSelector);
-cardList.renderItems();
+// cardList.renderItems();
 
 // Устиновить слушатель для кнопки "Редактировать профиль"
 document.querySelector(btnEditSelector).addEventListener('click', () => {
@@ -110,5 +115,15 @@ document.querySelector(btnEditSelector).addEventListener('click', () => {
 document.querySelector(btnAddCardSelector).addEventListener('click', () => {
   validatorAddCard.resetError();
   popupAddCard.open();
+
 });
 
+api.getInitialCards()
+  .then((result) => {
+    cardList.setItems(result);
+    cardList.renderItems();
+  })
+  .catch((err) => {
+    // Пока просто вывожу ошибку в консоль
+    console.log(err);
+  });
