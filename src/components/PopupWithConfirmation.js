@@ -3,6 +3,7 @@ import { Popup } from "./Popup.js";
 export class PopupWithConfirmation extends Popup {
   _handleOkClick;
   _btnSubmit;
+  _card;
 
   constructor({ handleOkClick }, popupSelector) {
     super(popupSelector);
@@ -12,11 +13,15 @@ export class PopupWithConfirmation extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this._btnSubmit.addEventListener('click', this._handleOkClick);
+    this._btnSubmit.addEventListener('click', () => {
+      this._handleOkClick(this._card);
+      this.close();
+    });
   }
 
-  close() {
-    super.close();
-    this._btnSubmit.removeEventListener('click', this._handleOkClick);
+  open(card) {
+    super.open();
+    this._card = card;
   }
+
 }

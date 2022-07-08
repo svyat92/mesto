@@ -26,22 +26,22 @@ import { showErr } from '../utils/utils';
  * Функция создания новой карточки
  * 
  * */
- const createCard = (data) => {
+const createCard = (data) => {
   return new Card({
     data: data,
     currentUserId: userInfo._id,
     handleCardClick: (card) => popupImage.open(card),
     handleDeleteClick: (card) => {
-      const popupConfirmation = new PopupWithConfirmation({
-        handleOkClick: () => {
-          api.deleteCard(card.id)
-            .then(() => card.deleteCard())
-            .catch((err) => showErr(err))
-            .finally(() => popupConfirmation.close());
-        }
-      }, '.popup_type_confirm');
-      popupConfirmation.setEventListeners();
-      popupConfirmation.open();
+      /*       const popupConfirmation = new PopupWithConfirmation({
+              handleOkClick: () => {
+                api.deleteCard(card.id)
+                  .then(() => card.deleteCard())
+                  .catch((err) => showErr(err))
+                  .finally(() => popupConfirmation.close());
+              }
+            }, '.popup_type_confirm'); */
+      // popupConfirmation.setEventListeners();
+      popupConfirmation.open(card);
     },
     handeLikeClick: (card) => {
       if (card.isLike()) {
@@ -72,6 +72,7 @@ const renderCard = (data) => {
 
 /** 
  * Взаимодействие с сервером
+ * 
  * */
 const api = new Api({
   serverUrl: 'https://mesto.nomoreparties.co/v1/cohort-45',
@@ -80,6 +81,7 @@ const api = new Api({
 
 /** 
  * Данные пользователя 
+ * 
  * */
 const userInfo = new UserInfo({
   userNameSelector: '.profile__title',
@@ -89,7 +91,22 @@ const userInfo = new UserInfo({
 
 
 /** 
+ * Всплывающее окно с подтверждением удаления карточки
+ * 
+ * */
+const popupConfirmation = new PopupWithConfirmation({
+  handleOkClick: (card) => {
+    api.deleteCard(card.id)
+      .then(() => card.deleteCard())
+      .catch((err) => showErr(err));
+  }
+}, '.popup_type_confirm');
+popupConfirmation.setEventListeners();
+
+
+/** 
  * Всплывающее окно с картинкой
+ * 
  * */
 const popupImage = new PopupWithImage('.popup_type_image');
 popupImage.setEventListeners();
@@ -97,6 +114,7 @@ popupImage.setEventListeners();
 
 /** 
  * Всплывающее окно с формой добавления карточки
+ * 
  * */
 const popupAddCard = new PopupWithForm(popupAddCardSelector, (inputValues) => {
   popupAddCard.renderLoading(true);
@@ -121,6 +139,7 @@ addCardBtnElement.addEventListener('click', () => {
 
 /** 
  * Всплывающее окно с формой редактирования
+ * 
  * */
 const popupEditProfile = new PopupWithForm(popupEditProfileSelector, (inputValues) => {
   popupEditProfile.renderLoading(true);
@@ -146,6 +165,7 @@ editProfileBtnElement.addEventListener('click', () => {
 
 /** 
  * Всплывающее окно с формой изменения аватарки
+ * 
  * */
 const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector, (inputValues) => {
   popupEditAvatar.renderLoading(true);
@@ -172,6 +192,7 @@ imageWrapperElement.addEventListener('click', () => {
 
 /** 
  * Секция с карточками
+ * 
  * */
 const cardList = new Section({
   renderer: renderCard
@@ -179,6 +200,7 @@ const cardList = new Section({
 
 /** 
  * Запросы к серверу. Получаем информацию о пользователе и массив карточек
+ * 
  * */
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([user, cards]) => {
