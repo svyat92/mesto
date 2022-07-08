@@ -10,9 +10,9 @@ export class PopupWithImage extends Popup {
     this._descElement = this._popupElement.querySelector('.popup__desc');
   }
   open(card) {
-    super.open();
     this._imageElement.src = card.link;
     this._imageElement.alt = card.name;
     this._descElement.textContent = card.name;
+    super.open();
   }
 }
