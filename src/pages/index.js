@@ -75,9 +75,11 @@ popupImage.setEventListeners();
 //
 // Всплывающее окно с формой добавления карточки
 const popupAddCard = new PopupWithForm(popupAddCardSelector, (inputValues) => {
+  popupAddCard.renderLoading(true);
   api.postNewCard(inputValues)
     .then((result) => renderCard(result))
-    .catch((err) => showErr(err));
+    .catch((err) => showErr(err))
+    .finally(() => popupAddCard.renderLoading(false));
 });
 popupAddCard.setEventListeners();
 // Валидация для формы добавления карточки
@@ -95,9 +97,11 @@ document.querySelector('.profile__add-btn').addEventListener('click', () => {
 //
 // Всплывающее окно с формой редактирования
 const popupEditProfile = new PopupWithForm(popupEditProfileSelector, (inputValues) => {
+  popupEditProfile.renderLoading(true);
   api.patchUserInfo(inputValues)
     .then((result) => userInfo.setUserInfo(result))
-    .catch((err) => showErr(err));
+    .catch((err) => showErr(err))
+    .finally(() => popupEditProfile.renderLoading(false));
 });
 popupEditProfile.setEventListeners();
 // Валидация для формы редактирования профиля
@@ -116,9 +120,11 @@ document.querySelector('.profile__edit-btn').addEventListener('click', () => {
 //
 // Всплывающее окно с формой изменения аватарки
 const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector, (inputValues) => {
+  popupEditAvatar.renderLoading(true);
   api.patchUserAvatar(inputValues)
     .then((result) => userInfo.setUserInfo(result))
-    .catch((err) => showErr(err));
+    .catch((err) => showErr(err))
+    .finally(() => popupEditAvatar.renderLoading(false));
 });
 popupEditAvatar.setEventListeners();
 // Валидация для формы изменения аватара
