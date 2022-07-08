@@ -12,14 +12,14 @@ export class Popup {
     }
   }
 
-  #handleMouseDownClose(event) {
+  _handleMouseDownClose(event) {
     if (event.target === event.currentTarget || event.target.classList.contains('popup__close-btn')) {
       this.close();
     }
   }
 
   setEventListeners() {
-    this._popupElement.addEventListener('mousedown', (event) => this.#handleMouseDownClose(event));
+    this._popupElement.addEventListener('mousedown', (event) => this._handleMouseDownClose(event));
   }
 
   open() {
