@@ -147,17 +147,14 @@ const cardList = new Section({
   renderer: renderCard
 }, '.elements');
 
-// Запрос к серверу. Получаем информацию о пользователе
-api.getUserInfo()
-  .then((result) => {
-    userInfo.setUserInfo(result);
-  })
-  .catch((err) => showErr(err));
-
-// Запрос к серверу. Получаем массив карточек
-api.getInitialCards()
-  .then((result) => {
-    cardList.setItems(result.reverse());
+//
+// Запросы к серверу. Получаем информацию о пользователе и массив карточек
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then((results) => {
+    userInfo.setUserInfo(results[0]);
+    cardList.setItems(results[1].reverse());
     cardList.renderItems();
   })
-  .catch((err) => showErr(err));
+  .catch(() => {
+    showErr('Не удлаось получить данные с сервера')
+  });
