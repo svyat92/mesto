@@ -143,7 +143,6 @@ document.querySelector('.profile__image-wrapper').addEventListener('click', () =
 //
 // Секция с карточками
 const cardList = new Section({
-  items: [],
   renderer: renderCard
 }, '.elements');
 
@@ -152,8 +151,7 @@ const cardList = new Section({
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then((results) => {
     userInfo.setUserInfo(results[0]);
-    cardList.setItems(results[1].reverse());
-    cardList.renderItems();
+    cardList.renderItems(results[1].reverse());
   })
   .catch(() => {
     showErr('Не удлаось получить данные с сервера')
