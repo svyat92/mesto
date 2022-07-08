@@ -3,25 +3,28 @@
 .page{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-moz-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background-color:#000;box-sizing:border-box;color:#fff;font-family:Inter,Arial,sans-serif;margin:0 auto;max-width:880px;min-width:320px;padding:45px 0 60px}@media screen and (max-width:700px){.page{padding:28px 0 36px}}
 .page__content{display:grid;padding-bottom:66px;padding-top:40px;row-gap:50px}@media screen and (max-width:896px){.page__content{margin:0 auto;max-width:calc(100% - 38px);padding-bottom:48px;padding-top:42px;row-gap:36px}}
 .link{cursor:pointer;text-decoration:none;transition:opacity .4s}.link:hover{opacity:.6}
-.header{align-items:center;border-bottom:1px solid #545454;display:flex}
+.header{align-items:center;border-bottom:1px solid rgba(84,84,84,.7);display:flex}
 .header__logo{background-image:url(images/logo.9acae8482e5b5b17160c.svg);background-position:50%;background-repeat:no-repeat;background-size:cover;height:33px;margin-bottom:40px;width:142px}@media screen and (max-width:896px){.header__logo{margin-left:27px}}@media screen and (max-width:700px){.header__logo{height:24.4px;margin-bottom:31.6px;width:103.74px}}
-.profile{align-items:center;display:grid;grid-template-columns:120px auto auto}@media screen and (max-width:700px){.profile{grid-template-columns:auto;justify-items:center}}
-.profile__avatar{max-width:120px;-o-object-fit:cover;object-fit:cover}
-.profile__info{display:flex;flex-direction:column;justify-content:center;padding:0 0 0 30px}@media screen and (max-width:700px){.profile__info{align-items:center;flex-direction:column;padding:26px 0 36px}}
+.profile{align-items:center;display:grid;gap:30px;grid-template-columns:120px auto auto}@media screen and (max-width:700px){.profile{gap:0;grid-template-columns:auto;justify-items:center}}
+.profile__avatar{border-radius:50%;height:100%;-o-object-fit:cover;object-fit:cover;width:100%}
+.profile__info{display:flex;flex-direction:column;justify-content:center}@media screen and (max-width:700px){.profile__info{align-items:center;flex-direction:column;padding:26px 0 36px}}
 .profile__line{align-items:center;display:flex;gap:18px}@media screen and (max-width:700px){.profile__line{gap:10px}}
 .profile__title{color:#fff;font-size:42px;font-style:normal;font-weight:500;line-height:48px;margin:0;max-width:350px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:700px){.profile__title{font-size:27px;line-height:33px;max-width:250px;text-align:center}}
 .profile__edit-btn{background-color:#000;background-image:url(images/edit.6c7bf05444b9793fdf6e.svg);background-position:50%;background-repeat:no-repeat;border:1px solid #fff;min-height:24px;min-width:24px;padding:0}@media screen and (max-width:700px){.profile__edit-btn{min-height:16px;min-width:16px}}
 .profile__subtitle{color:#fff;font-size:18px;font-style:normal;font-weight:400;line-height:22px;margin:0;max-width:350px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:700px){.profile__subtitle{font-size:14px;line-height:17px;max-width:250px}}
 .profile__add-btn{background-color:#000;background-image:url(images/pluse.bed8c136e13907f5eefb.svg);background-position:50%;background-repeat:no-repeat;border:2px solid #fff;border-radius:2px;box-sizing:border-box;cursor:pointer;height:50px;justify-self:end;padding:0;width:150px}@media screen and (max-width:700px){.profile__add-btn{justify-self:center;width:100%}}
+.profile__image-wrapper{cursor:pointer;height:120px;position:relative;width:120px}.profile__image-wrapper:before{background-color:#000;border-radius:47%;bottom:0;content:"";left:0;opacity:0;position:absolute;right:0;top:0;transition:opacity .5s}.profile__image-wrapper:hover:before{opacity:.8}.profile__image-wrapper:after{background:url(images/edit_avatar.ae1a976ddb506239e9f0.svg);background-position:50%;background-repeat:no-repeat;bottom:0;content:"";left:0;opacity:0;position:absolute;right:0;top:0}.profile__image-wrapper:hover:after{opacity:1}
 .elements{display:grid;gap:20px 17px;grid-template-columns:repeat(auto-fill,minmax(282px,1fr));justify-items:center}
 .element{display:flex;flex-direction:column;max-width:282px}
 .element__image-wrapper{display:flex;position:relative}
 .element__image{border-radius:10px 10px 0 0;cursor:pointer;display:flex;filter:brightness(80%);height:282px;-o-object-fit:cover;object-fit:cover;width:282px}
 .element__delete-btn{background-color:transparent;background-image:url(images/trash.e3c42771bff3aaa52f76.svg);background-position:50%;background-repeat:no-repeat;background-size:cover;border:none;height:19px;padding:0;position:absolute;right:20px;top:20px;width:18px}
+.element__delete-btn_hide{display:none}
 .element__info{align-items:center;background:#fff;border-radius:0 0 10px 10px;display:flex;justify-content:space-between;padding:25px 15px 25px 21px}
 .element__title{color:#000;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:0;max-width:220px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}
 .element__like-btn{background-color:#fff;background-image:url(images/like.1ad06e85f169668a1f36.svg);background-position:50%;background-repeat:no-repeat;background-size:cover;border:none;height:19px;padding:0;width:22px}
 .element__like-btn_active{background-image:url(images/like_active.35948469632d0421d697.svg)}
+.element__like-number{color:#000;font-size:13px;font-style:normal;font-weight:400;line-height:16px;margin:0;padding:0;text-align:center}
 @media screen and (max-width:896px){.footer{margin:0 auto;width:calc(100% - 38px)}}
 .footer__copyright{color:#545454;font-size:18px;font-style:normal;font-weight:400;line-height:22px;margin:0}@media screen and (max-width:896px){.footer__copyright{font-size:14px;line-height:17px}}
 .popup{align-items:center;background-color:rgba(0,0,0,.5);bottom:0;display:flex;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;transition:visibility .5s,opacity .5s;visibility:hidden}
@@ -42,3 +45,5 @@
 .form__input-error{color:red;font-size:12px;font-style:normal;font-weight:400;left:0;line-height:12px;opacity:0;position:absolute;top:calc(100% + 5px);transition:.3s}
 .form__input-error_active{opacity:1}
 
+
+/*# sourceMappingURL=main.css.map*/
