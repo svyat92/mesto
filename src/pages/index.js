@@ -21,9 +21,13 @@ import {
 } from '../utils/constants.js';
 import { showErr } from '../utils/utils';
 
-// Функция добавления карточки в DOM
-const renderCard = (data) => {
-  const card = new Card({
+
+/** 
+ * Функция создания новой карточки
+ * 
+ * */
+ const createCard = (data) => {
+  return new Card({
     data: data,
     currentUserId: userInfo._id,
     handleCardClick: (card) => popupImage.open(card),
@@ -55,6 +59,14 @@ const renderCard = (data) => {
       }
     }
   }, '#place-card');
+}
+
+/** 
+ * Добавление карточки в DOM
+ * 
+ * */
+const renderCard = (data) => {
+  const card = createCard(data);
   cardList.addItem(card.generateCard());
 }
 
