@@ -116,11 +116,11 @@ const popupAddCard = new PopupWithForm(popupAddCardSelector, (inputValues) => {
 });
 popupAddCard.setEventListeners();
 /** Валидация для формы добавления карточки */
-const validatorEditProfile = new FormValidator(
+const validatorAddCard = new FormValidator(
   validationSettings,
   addCardFormElement
 );
-validatorEditProfile.enableValidation();
+validatorAddCard.enableValidation();
 /** Установить слушатель для кнопки "Добавить карточку" */
 addCardBtnElement.addEventListener('click', () => {
   validatorAddCard.resetError();
@@ -141,11 +141,11 @@ const popupEditProfile = new PopupWithForm(popupEditProfileSelector, (inputValue
 });
 popupEditProfile.setEventListeners();
 /** Валидация для формы редактирования профиля */
-const validatorAddCard = new FormValidator(
+const validatorEditProfile = new FormValidator(
   validationSettings,
   editProfileFormElement
 );
-validatorAddCard.enableValidation();
+validatorEditProfile.enableValidation();
 /** Установить слушатель для кнопки "Редактировать профиль" */
 editProfileBtnElement.addEventListener('click', () => {
   popupEditProfile.setInputValues(userInfo.getInfoUser());
