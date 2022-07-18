@@ -32,15 +32,6 @@ const createCard = (data) => {
     currentUserId: userInfo._id,
     handleCardClick: (card) => popupImage.open(card),
     handleDeleteClick: (card) => {
-      /*       const popupConfirmation = new PopupWithConfirmation({
-              handleOkClick: () => {
-                api.deleteCard(card.id)
-                  .then(() => card.deleteCard())
-                  .catch((err) => showErr(err))
-                  .finally(() => popupConfirmation.close());
-              }
-            }, '.popup_type_confirm'); */
-      // popupConfirmation.setEventListeners();
       popupConfirmation.open(card);
     },
     handeLikeClick: (card) => {
@@ -155,7 +146,7 @@ const validatorAddCard = new FormValidator(
   editProfileFormElement
 );
 validatorAddCard.enableValidation();
-/** Устиновить слушатель для кнопки "Редактировать профиль" */
+/** Установить слушатель для кнопки "Редактировать профиль" */
 editProfileBtnElement.addEventListener('click', () => {
   popupEditProfile.setInputValues(userInfo.getInfoUser());
   validatorEditProfile.resetError();
